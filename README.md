@@ -53,7 +53,7 @@ Contraseña Segura | Abcde@123 | Seguridad mínima |
 ## 🚀 Instalación y Ejecución
 
 ### ✅ Requisitos previos
-- Python 3.8+
+- Python 3.0+
 - pip
 
 ### 📦 Instalar dependencias
