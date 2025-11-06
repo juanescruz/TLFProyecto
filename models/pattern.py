@@ -36,18 +36,23 @@ class EmailPattern(Pattern):
 
     def example(self):
         return "usuario@dominio.com"
-
+    
 
 class PhonePattern(Pattern):
     def __init__(self):
         super().__init__(
             name="Teléfono",
-            regex=r"\b(?:\+?\d{1,3}[\s-]?)?(?:\(?\d{1,4}\)?[\s-]?)?\d{4,14}\b",
-            description="Detecta números telefónicos locales o internacionales."
+            # Acepta únicamente números móviles colombianos de 10 dígitos que comienzan por 3,
+            # en dos formatos permitidos: "3104561168" o "310 456 1168".
+            # No acepta +57, guiones, ni otros formatos.
+            regex=r"(?<!\d)(?:3\d{9}|3\d{2}\s\d{3}\s\d{4})(?!\d)",
+            description="Teléfono móvil colombiano: 10 dígitos, empieza por 3. Formatos: 3104561168 o 310 456 1168"
         )
 
     def example(self):
-        return "+57 300 123 4567"
+        return "3104561168 sin el +57"
+
+
 
 
 class DatePattern(Pattern):
@@ -59,7 +64,7 @@ class DatePattern(Pattern):
         )
 
     def example(self):
-        return "2024-05-21"
+        return "2024-05-21 o 12/04/2023"
 
 
 class URLPattern(Pattern):
@@ -92,24 +97,24 @@ class PlacaPattern(Pattern):
     def __init__(self):
         super().__init__(
             name="Placa vehicular",
-            regex=r"\b[A-Z]{3}-\d{3}\b",
-            description="Detecta placas formato ABC-123."
+            regex=r"(?i)(?<!\S)(?:[A-Z]{3}\d{3}|[A-Z]{3}\d{2}[A-Z]?)(?!\S)",
+            description="Placas Colombia carros (ABC123) y motos (ABC12 o ABC12D), sin guiones, mayúsculas o minúsculas."
         )
 
     def example(self):
-        return "ABC-123"
+        return "ABC123 (Carro) ABC12 O ABC12D (Moto)"
 
 
 class PostalCodePattern(Pattern):
     def __init__(self):
         super().__init__(
             name="Código Postal",
-            regex=r"\b\d{5}(?:-\d{4})?\b",
-            description="Código postal colombiano (00000) o ZIP con extensión (00000-0000)."
+            regex=r"(?<!\d)(?:\d{6}|\d{5}(?:-\d{4})?)(?!\d)",
+            description="Código postal colombiano (6 dígitos) o internacional (5 dígitos) y ZIP+4 opcional."
         )
 
     def example(self):
-        return "11001"
+        return "630004"
 
 
 class StrongPasswordPattern(Pattern):
