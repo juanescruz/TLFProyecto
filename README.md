@@ -30,11 +30,21 @@ Desarrollar un sistema capaz de identificar y validar patrones en textos utiliza
 - Diseñar y evaluar expresiones regulares para diferentes tipos de datos.
 - Implementar un motor de detección y validación modular.
 - Crear una interfaz de usuario para pruebas y validación en tiempo real.
-- Registrar resultados y generar reportes.
+- Registrar resultados y generar reportes en CSV y JSON.
 - Realizar pruebas unitarias sobre el módulo de validación.
 
 ---
 
+## 🛠️ Requisitos del sistema
+
+| Recurso | Versión |
+|--------|--------|
+Python | 3.8 – 3.11  
+OS | Windows / macOS / Linux  
+Browser | Chrome / Edge / Firefox  
+Virtual Env | Recomendado  
+
+---
 
 ## 🧠 Patrones implementados (Regex)
 
@@ -58,7 +68,14 @@ Contraseña Segura | Abcde@123 | Seguridad mínima |
 
 ### 📦 Instalar dependencias
 ```bash
+git clone https://github.com/juanescruz/TLFProyecto.git
+cd TLFProyecto
+python -m venv venv
+venv\Scripts\Activate.ps1
+pip install --upgrade pip
 pip install -r requirements.txt
+streamlit run app.py
+
 
 
 
