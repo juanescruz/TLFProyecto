@@ -72,3 +72,54 @@ class URLPattern(Pattern):
 
     def example(self):
         return "https://www.ejemplo.com"
+    
+
+# Demás patrones que faltaban
+
+class CedulaPattern(Pattern):
+    def __init__(self):
+        super().__init__(
+            name="Cédula",
+            regex=r"\b\d{6,10}\b",
+            description="Detecta cédulas colombianas (6-10 dígitos)."
+        )
+
+    def example(self):
+        return "1025487963"
+
+
+class PlacaPattern(Pattern):
+    def __init__(self):
+        super().__init__(
+            name="Placa vehicular",
+            regex=r"\b[A-Z]{3}-\d{3}\b",
+            description="Detecta placas formato ABC-123."
+        )
+
+    def example(self):
+        return "ABC-123"
+
+
+class PostalCodePattern(Pattern):
+    def __init__(self):
+        super().__init__(
+            name="Código Postal",
+            regex=r"\b\d{5}(?:-\d{4})?\b",
+            description="Código postal colombiano (00000) o ZIP con extensión (00000-0000)."
+        )
+
+    def example(self):
+        return "11001"
+
+
+class StrongPasswordPattern(Pattern):
+    def __init__(self):
+        super().__init__(
+            name="Contraseña Segura",
+            regex=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]{8,}$",
+            description="Debe tener al menos 8 caracteres, mayúscula, minúscula, número y símbolo."
+        )
+
+    def example(self):
+        return "Segura@123"
+

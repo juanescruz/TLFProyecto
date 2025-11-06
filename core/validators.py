@@ -1,5 +1,5 @@
 # core/validators.py
-from models.pattern import EmailPattern, PhonePattern, DatePattern, URLPattern
+from models.pattern import EmailPattern, PhonePattern, DatePattern, PlacaPattern, PostalCodePattern, StrongPasswordPattern, URLPattern, CedulaPattern
 from models.validation_result import ValidationResult
 
 class PatternValidator:
@@ -10,7 +10,11 @@ class PatternValidator:
             EmailPattern(),
             PhonePattern(),
             DatePattern(),
-            URLPattern()
+            URLPattern(),
+            CedulaPattern(),
+            PlacaPattern(),
+            PostalCodePattern(),
+            StrongPasswordPattern()
         ]
 
     def validate_all(self, text: str):
