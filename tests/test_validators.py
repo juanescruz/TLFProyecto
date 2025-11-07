@@ -7,11 +7,26 @@ def test_email_valid():
     r = pv.validate_one("correo electrónico", "juan.perez@example.com")
     assert r.is_valid
 
+def test_email_invalid():
+    pv = PatternValidator()
+    r = pv.validate_one("correo electrónico", "juan@@gmail..com")
+    assert not r.is_valid
+
 #Test Cedula
 def test_cedula_valid():
     pv = PatternValidator()
     r = pv.validate_one("cédula", "1025487963")
     assert r.is_valid
+
+def test_cedula_invalid_length():
+    pv = PatternValidator()
+    r = pv.validate_one("cédula", "12345")  # muy corta
+    assert not r.is_valid
+
+def test_cedula_invalid_letters():
+    pv = PatternValidator()
+    r = pv.validate_one("cédula", "1234A6789")
+    assert not r.is_valid
 
 #Test Contraseña
 def test_password_secure():
@@ -103,7 +118,44 @@ def test_postal_invalid_letters():
 
 def test_postal_invalid_length():
     pv = PatternValidator()
-    r = pv.validate_one("código postal", "63000")
+    r = pv.validate_one("código postal", "6300")  # 4 dígitos
+    assert not r.is_valid
+
+#Test URLs
+def test_url_valid_http():
+    pv = PatternValidator()
+    r = pv.validate_one("url", "https://www.google.com")
+    assert r.is_valid
+
+def test_url_valid_no_protocol():
+    pv = PatternValidator()
+    r = pv.validate_one("url", "www.miweb.co")
+    assert r.is_valid
+
+def test_url_invalid_bad_format():
+    pv = PatternValidator()
+    r = pv.validate_one("url", "http:/bad-url.com")
+    assert not r.is_valid
+
+#Test Fechas
+def test_date_valid_iso():
+    pv = PatternValidator()
+    r = pv.validate_one("fecha", "2024-05-21")
+    assert r.is_valid
+
+def test_date_valid_slash():
+    pv = PatternValidator()
+    r = pv.validate_one("fecha", "15/08/1998")
+    assert r.is_valid
+
+def test_date_invalid_day_month_order():
+    pv = PatternValidator()
+    r = pv.validate_one("fecha", "31/02/2023") 
+    assert r.is_valid  
+
+def test_date_invalid_text():
+    pv = PatternValidator()
+    r = pv.validate_one("fecha", "fecha:12-2024")
     assert not r.is_valid
 
 

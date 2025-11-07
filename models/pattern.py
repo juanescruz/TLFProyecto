@@ -53,8 +53,6 @@ class PhonePattern(Pattern):
         return "3104561168 sin el +57"
 
 
-
-
 class DatePattern(Pattern):
     def __init__(self):
         super().__init__(
@@ -78,8 +76,6 @@ class URLPattern(Pattern):
     def example(self):
         return "https://www.ejemplo.com"
     
-
-# Demás patrones que faltaban
 
 class CedulaPattern(Pattern):
     def __init__(self):

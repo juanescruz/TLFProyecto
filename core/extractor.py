@@ -3,7 +3,10 @@ from core.validators import PatternValidator
 import pandas as pd
 
 class PatternExtractor:
-    """Motor de extracción masiva de patrones."""
+    """
+    Extrae todos los patrones definidos en el sistema desde texto o archivos
+    y devuelve los resultados en un DataFrame.
+    """
 
     def __init__(self):
         self.validator = PatternValidator()

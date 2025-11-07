@@ -2,6 +2,11 @@
 from dataclasses import dataclass
 from typing import Optional
 
+"""
+Representa el resultado de validar o detectar un patrón,
+almacenando el texto encontrado y su estado (válido o no).
+"""
+
 @dataclass
 class ValidationResult:
     pattern_name: str
